@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Triode Labs — Web Development & Animation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="cursor-dot" id="cDot"></div>
+<div class="cursor-ring" id="cRing"></div>
+
+<header id="header">
+  <nav class="nav">
+    <a class="mark" href="#top"><span class="dot"></span>Triode<small>LABS</small></a>
+    <div class="links">
+      <a href="#work">Work</a>
+      <a href="#team">Team</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="cta">
+      <span class="meta"><span>Kolkata, IN</span><span class="clock" id="clock">--:--</span></span>
+      <a class="btn ghost" href="#contact">Start a project</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<aside class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="menu-head">
+    <span class="mark"><span class="dot"></span>Triode<small>LABS</small></span>
+    <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="menu-links">
+    <a href="#work"><span>Work</span><span class="arw">→</span></a>
+    <a href="#team"><span>Team</span><span class="arw">→</span></a>
+    <a href="#services"><span>Services</span><span class="arw">→</span></a>
+    <a href="#process"><span>Process</span><span class="arw">→</span></a>
+    <a href="#contact"><span>Contact</span><span class="arw">→</span></a>
+  </nav>
+  <div class="menu-foot">
+    <a class="btn" href="#contact">Start a project →</a>
+    <span class="mail">hello@triostudio.dev</span>
+  </div>
+</aside>
+
+<section class="hero" id="top">
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="wrap" style="position:relative;z-index:3;">
+    <div class="eyebrow"><span class="pulse-dot"></span>Web Development Studio — Est. 2023<span class="pulse-dot"></span></div>
+    <h1 class="title">We build websites<br>that <em>move.</em></h1>
+    <p class="hero-sub">We're <b>three friends</b> who design, build and animate websites for clients who refuse to look ordinary. Fast. Polished. <b>Unforgettable.</b></p>
+    <div class="hero-cta">
+      <a class="btn" href="#work">View our work ↓</a>
+      <a class="btn ghost" href="#contact">Start a project</a>
+    </div>
+    <div class="glass-stage">
+      <div class="glass-plate"><div class="bokeh"></div><div class="sheen"></div></div>
+      <svg class="bracket-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bracketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b7bff"/>
+            <stop offset="50%" stop-color="#4fd8e0"/>
+            <stop offset="100%" stop-color="#ff8a7a"/>
+          </linearGradient>
+        </defs>
+        <path d="M120 40 L45 130 L120 220 M170 230 L230 30 M280 40 L355 130 L280 220"
+              fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="36"
+              stroke-linecap="round" stroke-linejoin="round" transform="translate(0,6)"/>
+        <path d="M120 40 L45 130 L120 220 M170 230 L230 30 M280 40 L355 130 L280 220"
+              fill="none" stroke="url(#bracketGrad)" stroke-width="30" stroke-opacity="0.92"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M120 40 L45 130 L120 220 M170 230 L230 30 M280 40 L355 130 L280 220"
+              fill="none" stroke="#08080b" stroke-width="14" stroke-opacity="0.25"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="chip chip-1"><i></i>React</div>
+      <div class="chip chip-2"><i></i>Framer Motion</div>
+      <div class="chip chip-3"><i></i>Node.js</div>
+      <div class="chip chip-4"><i></i>GSAP</div>
+      <div class="chip chip-5"><i></i>Three.js</div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>SCROLL</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>React <i>✦</i> Next.js <i>✦</i> Node.js <i>✦</i> TypeScript <i>✦</i> Framer Motion <i>✦</i> GSAP <i>✦</i> Three.js <i>✦</i> Tailwind <i>✦</i> Stripe <i>✦</i> MongoDB <i>✦</i> Flask <i>✦</i> Vite <i>✦</i></span>
+    <span>React <i>✦</i> Next.js <i>✦</i> Node.js <i>✦</i> TypeScript <i>✦</i> Framer Motion <i>✦</i> GSAP <i>✦</i> Three.js <i>✦</i> Tailwind <i>✦</i> Stripe <i>✦</i> MongoDB <i>✦</i> Flask <i>✦</i> Vite <i>✦</i></span>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="wrap" style="padding:0;">
+    <div class="svc-row">
+      <div class="svc-cell">Full-Stack Development <span class="arrow">↳</span></div>
+      <div class="svc-cell">UI/UX & Web Design <span class="arrow">↵</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-cell">Motion & Animation <small>scroll effects, micro-interactions, WebGL</small><span class="arrow">↳</span></div>
+      <div class="svc-cell">E-Commerce & Payments <span class="arrow">↵</span></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-cell">Dashboards & Admin Systems <span class="arrow">↳</span></div>
+      <div class="svc-cell">API & Third-Party Integration <span class="arrow">↵</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="wrap">
+    <p class="reveal">Three friends. One obsession — building <b>fast, animated, pixel-honest</b> websites that make clients look <em>expensive.</em></p>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="label reveal">[ The Team ]</span>
+        <h2 class="reveal d1">Three minds, <em>one bar.</em></h2>
+      </div>
+      <span class="index reveal d2">01 / DESIGN · 02 / MOTION · 03 / CODE</span>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal" style="--mc:var(--coral);--mc2:var(--pink);">
+        <div class="glow"></div>
+        <div class="avatar">SB</div>
+        <h3>Suvradeep Basak</h3>
+        <span class="role">Design & Branding</span>
+        <p>Visual identity, UI/UX and design systems. Every pixel intentional, every screen unmistakably on-brand.</p>
+        <div class="mtags"><span>Figma</span><span>UI/UX</span><span>Design Systems</span></div>
+        <div class="socials"><a href="#">Behance</a><a href="#">LinkedIn</a></div>
+      </div>
+      <div class="member reveal d1" style="--mc:var(--cyan);--mc2:var(--blue);">
+        <div class="glow"></div>
+        <div class="avatar">KP</div>
+        <h3>Koushik Paul</h3>
+        <span class="role">Motion & Frontend</span>
+        <p>The animation guy. Scroll effects, micro-interactions and buttery-smooth UI with Framer Motion, GSAP and WebGL.</p>
+        <div class="mtags"><span>Framer Motion</span><span>GSAP</span><span>Three.js</span><span>TypeScript</span></div>
+        <div class="socials"><a href="#">GitHub</a><a href="#">Dribbble</a></div>
+      </div>
+      <div class="member reveal d2" style="--mc:var(--violet);--mc2:var(--cyan);">
+        <div class="glow"></div>
+        <div class="avatar">PM</div>
+        <h3>Pratyay Mitra Mustafi</h3>
+        <span class="role">Full-Stack Engineer</span>
+        <p>Turns messy requirements into production systems that don't break. Architecture, payments, and the parts nobody sees.</p>
+        <div class="mtags"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Flask</span></div>
+        <div class="socials"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="label reveal">[ Selected Work ]</span>
+        <h2 class="reveal d1">Client sites we're <em>proud of.</em></h2>
+      </div>
+      <span class="index reveal d2">Hover a card — they're alive</span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card tilt reveal" style="--pc:#8b7bff;">
+        <div class="glare"></div>
+        <div class="mock layout-site">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">cosmicsage.in</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="hero-m">
+              <div class="big-m"></div><div class="sub-m"></div><div class="btn-m"></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>CosmicSage</h3><span class="cat">Client Site</span></div>
+          <p class="desc">A mystical, dark astrology platform with scroll-triggered constellations and a booking flow.</p>
+          <div class="foot"><div class="tags"><span>React 18</span><span>Framer Motion</span></div><span class="year">2025</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+      <div class="proj-card tilt reveal d1" style="--pc:#6ba9ff;">
+        <div class="glare"></div>
+        <div class="mock layout-dash">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">app.stocksense.io</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="side-m"><span class="m-line on"></span><span class="m-line"></span><span class="m-line"></span><span class="m-line"></span></div>
+            <div class="main-m">
+              <div class="kpis">
+                <div class="kpi"><div class="num"></div><div class="m-line"></div></div>
+                <div class="kpi"><div class="num"></div><div class="m-line"></div></div>
+                <div class="kpi"><div class="num"></div><div class="m-line"></div></div>
+              </div>
+              <div class="chart-m"><span class="col" style="height:35%"></span><span class="col" style="height:55%"></span><span class="col" style="height:45%"></span><span class="col" style="height:75%"></span><span class="col" style="height:60%"></span><span class="col" style="height:90%"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>StockSense</h3><span class="cat">Web App</span></div>
+          <p class="desc">AI-assisted warehouse & inventory system for FMCG retail — dashboards, alerts, demand forecasts.</p>
+          <div class="foot"><div class="tags"><span>React</span><span>Node.js</span><span>AI</span></div><span class="year">2025</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+      <div class="proj-card tilt reveal" style="--pc:#4fd8e0;">
+        <div class="glare"></div>
+        <div class="mock layout-shop">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">nexuspc.in</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="nav-m"><span class="m-line"></span><span class="m-line"></span><span class="m-line"></span></div>
+            <div class="grid-m">
+              <div class="card-m"><div class="img-m"></div><div class="m-line"></div><div class="m-line p"></div></div>
+              <div class="card-m"><div class="img-m"></div><div class="m-line"></div><div class="m-line p"></div></div>
+              <div class="card-m"><div class="img-m"></div><div class="m-line"></div><div class="m-line p"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>NexusPC</h3><span class="cat">E-Commerce</span></div>
+          <p class="desc">PC components store with cart, admin dashboard and Stripe checkout — built to convert.</p>
+          <div class="foot"><div class="tags"><span>React / Vite</span><span>Stripe</span></div><span class="year">2024</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+      <div class="proj-card tilt reveal d1" style="--pc:#ff6ba9;">
+        <div class="glare"></div>
+        <div class="mock layout-editorial">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">eclat-beauty.com</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="mag-m">Éclat<br>Beauty Studio</div>
+            <div class="img-m"></div>
+            <div class="txt-m"><span class="m-line l"></span><span class="m-line m"></span></div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>Éclat Beauty Studio</h3><span class="cat">Editorial</span></div>
+          <p class="desc">Luxury editorial site with parallax imagery and scroll-triggered SVG reveals.</p>
+          <div class="foot"><div class="tags"><span>React</span><span>Flask</span></div><span class="year">2024</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+      <div class="proj-card tilt reveal" style="--pc:#9be564;">
+        <div class="glare"></div>
+        <div class="mock layout-agency">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">brandlift.studio</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="logo-m">BrandLift</div>
+            <div class="hero-m"><div class="big-m"></div><div class="sub-m"></div></div>
+            <div class="tiles">
+              <div class="m-tile"><span class="m-line"></span><span class="m-line"></span></div>
+              <div class="m-tile"><span class="m-line"></span><span class="m-line"></span></div>
+              <div class="m-tile"><span class="m-line"></span><span class="m-line"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>BrandLift Studio</h3><span class="cat">Agency Site</span></div>
+          <p class="desc">Branding agency site and landing pages — bold type, big motion, zero bloat.</p>
+          <div class="foot"><div class="tags"><span>Vanilla JS</span><span>CSS</span></div><span class="year">2023</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+      <div class="proj-card tilt reveal d1" style="--pc:#ff8a7a;">
+        <div class="glare"></div>
+        <div class="mock layout-saas">
+          <div class="mock-bar"><b></b><b></b><b></b><span class="url">adpulse.app</span></div>
+          <div class="mock-body"><div class="hue"></div>
+            <div class="chart-m">
+              <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+                <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a7a"/><stop offset="1" stop-color="#ff8a7a" stop-opacity="0"/></linearGradient></defs>
+                <polyline points="0,58 25,45 50,50 75,32 100,38 125,22 150,28 175,12 200,18" fill="none" stroke="url(#cg)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="175" cy="12" r="3" fill="#ff8a7a"/>
+              </svg>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="m-line"></span><span class="m-line"></span><span class="chip-tag">+24%</span></div>
+              <div class="row"><span class="m-line"></span><span class="m-line"></span><span class="chip-tag">+12%</span></div>
+              <div class="row"><span class="m-line"></span><span class="m-line"></span><span class="chip-tag">+8%</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="top"><h3>AdPulse</h3><span class="cat">SaaS Dashboard</span></div>
+          <p class="desc">Marketing analytics SaaS with real-time dashboards, funnels and campaign tracking.</p>
+          <div class="foot"><div class="tags"><span>Next.js</span><span>Supabase</span></div><span class="year">2025</span></div>
+          <span class="view">View case study <span class="arr">→</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="label reveal">[ How We Work ]</span>
+        <h2 class="reveal d1">From idea to <em>launch.</em></h2>
+      </div>
+      <span class="index reveal d2">Avg. 4–6 weeks</span>
+    </div>
+    <div class="proc-grid reveal">
+      <div class="proc-cell">
+        <div class="num">01 <i>→</i></div>
+        <h3>Discover</h3>
+        <p>We dig into your business, audience and goals in a 30-minute call, then map what success looks like.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="proc-cell">
+        <div class="num">02 <i>→</i></div>
+        <h3>Design</h3>
+        <p>Wireframes to polished UI. Motion-first from day one — animation is never an afterthought here.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="proc-cell">
+        <div class="num">03 <i>→</i></div>
+        <h3>Build</h3>
+        <p>Clean, fast code with weekly previews, so you're never in the dark about where things stand.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="proc-cell">
+        <div class="num">04 <i>→</i></div>
+        <h3>Launch & Support</h3>
+        <p>Deploy, handover, and 30 days of free care. Then we stay a message away, always.</p>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat-cell"><div class="n"><span class="count" data-count="40" data-suffix="+">0</span></div><div class="l">Projects Shipped</div></div>
+      <div class="stat-cell"><div class="n"><span class="count" data-count="25" data-suffix="+">0</span></div><div class="l">Happy Clients</div></div>
+      <div class="stat-cell"><div class="n"><span class="count" data-count="3">0</span></div><div class="l">Developers</div></div>
+      <div class="stat-cell"><div class="n"><span class="count" data-count="6" data-suffix=" yrs">0</span></div><div class="l">Combined Experience</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="label reveal">[ Client Words ]</span>
+        <h2 class="reveal d1">Don't take our <em>word</em> for it.</h2>
+      </div>
+      <span class="index reveal d2">★★★★★ avg. rating</span>
+    </div>
+    <div class="testi-grid">
+      <div class="quote reveal" style="--qc:var(--coral);--qc2:var(--pink);">
+        <div class="stars">★★★★★</div>
+        <p>"Triode rebuilt our store and <b>conversions jumped 34%</b> in the first month. The animations make the whole brand feel expensive."</p>
+        <div class="who"><div class="init">MI</div><div><div class="nm">Meera Iyer</div><div class="co">Founder, Aurora Skincare</div></div></div>
+      </div>
+      <div class="quote reveal d1" style="--qc:var(--violet);--qc2:var(--blue);">
+        <div class="stars">★★★★★</div>
+        <p>"The only devs we've worked with who actually deliver <b>what the mockup promised</b> — down to the last animation frame."</p>
+        <div class="who"><div class="init">RS</div><div><div class="nm">Rohit Sen</div><div class="co">CEO, BrandLift Studio</div></div></div>
+      </div>
+      <div class="quote reveal d2" style="--qc:var(--cyan);--qc2:var(--lime);">
+        <div class="stars">★★★★★</div>
+        <p>"Fast, communicative, and they sweat the details. <b>Our ops team finally enjoys</b> using the dashboard they built."</p>
+        <div class="who"><div class="init">AR</div><div><div class="nm">Anjali Rao</div><div class="co">Ops Lead, FMCG Retail Co.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="bg-blob b3"></div>
+  <div class="wrap" style="position:relative;z-index:3;">
+    <span class="label">[ Get in touch ]</span>
+    <h2 class="reveal"><a href="mailto:hello@triostudio.dev">hello@triostudio.dev</a></h2>
+    <p class="sub reveal d1">Tell us about your project. We reply within 24 hours — usually with ideas, not just a price.</p>
+    <div class="hero-cta reveal d2">
+      <a class="btn" href="mailto:hello@triostudio.dev">Start a project →</a>
+    </div>
+    <div class="contact-links reveal d3">
+      <a href="#"><span class="g" style="--gc:var(--violet)"></span>GitHub</a>
+      <a href="#"><span class="g" style="--gc:var(--blue)"></span>LinkedIn</a>
+      <a href="#"><span class="g" style="--gc:var(--pink)"></span>Instagram</a>
+      <a href="#"><span class="g" style="--gc:var(--lime)"></span>Behance</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <footer>
+      <span>Triode Labs — All Rights Reserved</span>
+      <span>© 2026 · Kolkata, IN</span>
+    </footer>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
