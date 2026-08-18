@@ -62,6 +62,10 @@
   background: var(--bg-panel);
 }
 
+[data-theme="light"] .stats-grid {
+  background: var(--bg-panel);
+}
+
 [data-theme="light"] .chip {
   background: rgba(255, 255, 255, 0.7);
   border-color: rgba(20, 20, 40, 0.14);
@@ -74,8 +78,8 @@
 [data-theme="light"] .menu-panel {
   background:
     linear-gradient(180deg, var(--bg-raised), var(--bg-panel)) padding-box,
-    linear-gradient(160deg, rgba(119, 103, 242, 0.65), rgba(18, 176, 189, 0.5) 55%, rgba(238, 92, 75, 0.55)) border-box;
-  border: 1px solid transparent;
+    var(--grad) border-box;
+  border: 2px solid transparent;
   box-shadow: 0 30px 80px -24px rgba(30, 30, 60, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 0 44px -18px rgba(119, 103, 242, 0.45);
 }
 
@@ -365,8 +369,15 @@ header.scrolled .nav {
 .burger {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
-  padding: 7px;
+  padding: 9px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)) padding-box,
+    var(--grad) border-box;
 }
 
 .burger span {
@@ -485,17 +496,20 @@ header.scrolled .nav {
     max-height: calc(100dvh - 104px);
     background:
       linear-gradient(180deg, var(--bg-raised), var(--bg-panel)) padding-box,
-      linear-gradient(160deg, var(--violet), var(--cyan) 55%, var(--coral)) border-box;
-    border: 1px solid transparent;
+      var(--grad) border-box;
+    border: 2px solid transparent;
     border-radius: 20px;
     box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 0 44px -18px rgba(139, 123, 255, 0.4);
     transform: translateX(calc(100% + 34px));
-    transition: transform .5s var(--ease);
+    visibility: hidden;
+    transition: transform .5s var(--ease), visibility 0s .5s;
     overflow: hidden;
   }
 
   body.menu-open .menu-panel {
+    visibility: visible;
     transform: translateX(0);
+    transition: transform .5s var(--ease), visibility 0s;
   }
 
   .menu-head {
@@ -1347,6 +1361,7 @@ h1.title em {
 }
 
 .proj-card {
+  display: block;
   position: relative;
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -1440,6 +1455,28 @@ h1.title em {
   inset: 0;
   background: radial-gradient(120% 90% at 20% 0%, color-mix(in srgb, var(--pc) 24%, transparent), transparent 55%),
     radial-gradient(120% 90% at 85% 100%, color-mix(in srgb, var(--pc) 18%, transparent), transparent 55%);
+}
+
+/* real site screenshots — clean frame with the brand gradient border
+   (violet → cyan → coral, same as the <em> “launch.” text). The gradient
+   uses theme-aware variables, so it stays visible in light and dark. */
+.mock.mock-photo {
+  aspect-ratio: 16/10;
+  margin: 18px 18px 0;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--bg-panel), var(--bg-panel)) padding-box,
+    var(--grad) border-box;
+  overflow: hidden;
+}
+
+.mock.mock-photo .shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .m-line {
@@ -1994,7 +2031,7 @@ h1.title em {
   }
 }
 
-/* ---------- TATSS ---------- */
+/* ---------- STATS ---------- */
 .stats {
   padding-top: 55px;
   padding-bottom: 55px;
@@ -2012,7 +2049,7 @@ h1.title em {
 
 .stat-cell {
   background: #16161a;
-  padding: 46px 30px;
+  padding: 35px 30px;
   text-align: center;
 }
 
@@ -2044,28 +2081,24 @@ h1.title em {
   margin-top: 12px;
 }
 
+/* Stats stay in a single row at every width */
 @media (max-width:800px) {
   .stats-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  .stat-cell:nth-child(3) {
-    border-left: none;
+  .stat-cell {
+    padding: 35px 8px;
   }
 
-  .stat-cell:nth-child(n+3) {
-    border-top: 1px solid var(--line);
-  }
-}
-
-@media (max-width:480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .stat-cell .n {
+    font-size: clamp(22px, 6.5vw, 34px);
   }
 
-  .stat-cell+.stat-cell {
-    border-left: none;
-    border-top: 1px solid var(--line);
+  .stat-cell .l {
+    font-size: 9px;
+    letter-spacing: .05em;
+    margin-top: 8px;
   }
 }
 
@@ -2351,31 +2384,189 @@ footer {
   }
 }
 
-/* ---------- REVEAL ---------- */
-.reveal {
+/* ---------- CONTACT FORM ---------- */
+.contact-form {
+  max-width: 580px;
+  margin: 44px auto 0;
+  text-align: left;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px 26px;
+  position: relative;
+}
+
+.contact-form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(120% 140% at 0% 0%, rgba(139, 123, 255, 0.08), transparent 45%);
+  pointer-events: none;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.contact-form .f-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-family: 'JetBrains Mono';
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  font-family: 'Inter';
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 11px 13px;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+  resize: vertical;
+}
+
+.contact-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238b899a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  padding-right: 34px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 18%, transparent);
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.contact-form .form-note {
+  font-family: 'JetBrains Mono';
+  font-size: 10.5px;
+  color: var(--text-faint);
+  margin-top: 16px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-transform: none;
+  position: relative;
+}
+
+.contact-form .form-note a {
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.contact-form .form-note a:hover {
+  color: var(--text);
+}
+
+@media (max-width:560px) {
+  .contact-form .f-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form .btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+/* ---------- BACK TO TOP ---------- */
+.to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--text);
+  background: var(--bg-panel);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 14px 34px -12px rgba(0, 0, 0, 0.55);
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .35s var(--ease), transform .35s var(--ease), border-color .3s, color .3s;
 }
 
-.reveal.in {
+.to-top.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  pointer-events: auto;
 }
 
-.reveal.d1 {
+.to-top:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+}
+
+@media (max-width:480px) {
+  .to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ---------- REVEAL ---------- */
+/* Hidden state is gated behind .js so content stays visible without JavaScript.
+   Movement uses the `translate` property (not `transform`) so it never clashes
+   with 3D tilt or hover-lift transforms on the same elements. */
+.js .reveal {
+  opacity: 0;
+  translate: 0 28px;
+  transition: opacity .8s var(--ease), translate .8s var(--ease);
+}
+
+.js .reveal.in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.js .reveal.d1 {
   transition-delay: .08s;
 }
 
-.reveal.d2 {
+.js .reveal.d2 {
   transition-delay: .16s;
 }
 
-.reveal.d3 {
+.js .reveal.d3 {
   transition-delay: .24s;
 }
 
-.reveal.d4 {
+.js .reveal.d4 {
   transition-delay: .32s;
 }
 
@@ -2393,8 +2584,10 @@ footer {
     display: none;
   }
 
-  .reveal {
+  .reveal,
+  .js .reveal {
     opacity: 1;
+    translate: none;
     transform: none;
   }
 }
