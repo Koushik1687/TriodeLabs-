@@ -107,12 +107,16 @@ if (svcTabs.length && svcItems.length) {
     svcTabs[next].focus();
     applyFilter(svcTabs[next].dataset.filter);
   });
-  // click a row to select it (single-select)
+  // click a row to select it, pre-fill the contact form's service, and scroll there
+  const serviceSelect = document.getElementById('serviceSelect');
   svcItems.forEach(item => {
     item.addEventListener('click', () => {
-      const wasSelected = item.classList.contains('selected');
       svcItems.forEach(i => i.classList.remove('selected'));
-      if (!wasSelected) item.classList.add('selected');
+      item.classList.add('selected');
+      const service = item.querySelector('.nm').textContent.trim();
+      if (serviceSelect) serviceSelect.value = service;
+      const contact = document.getElementById('contact');
+      if (contact) contact.scrollIntoView({ behavior: 'smooth' });
     });
   });
 }
@@ -181,10 +185,11 @@ if (contactForm) {
     const f = new FormData(contactForm);
     const name = String(f.get('name') || '').trim();
     const email = String(f.get('email') || '').trim();
+    const service = String(f.get('service') || '').trim();
     const budget = String(f.get('budget') || '').trim();
     const msg = String(f.get('message') || '').trim();
     const subject = encodeURIComponent('Project inquiry from ' + name);
-    const lines = ['Name: ' + name, 'Email: ' + email, 'Budget: ' + (budget || 'Not specified')];
+    const lines = ['Name: ' + name, 'Email: ' + email, 'Service: ' + (service || 'Not specified'), 'Budget: ' + (budget || 'Not specified')];
     if (msg) lines.push('', msg);
     const body = encodeURIComponent(lines.join('\n'));
     window.location.href = 'mailto:hello@triostudio.dev?subject=' + subject + '&body=' + body;
