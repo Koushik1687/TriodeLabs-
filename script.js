@@ -80,6 +80,43 @@ document.querySelectorAll('.tilt').forEach(card => {
   });
 });
 
+// ---- services filter tabs + selection ----
+const svcTabs = document.querySelectorAll('.svc-tab');
+const svcItems = document.querySelectorAll('.svc-item');
+if (svcTabs.length && svcItems.length) {
+  const applyFilter = filter => {
+    svcTabs.forEach(t => {
+      const on = t.dataset.filter === filter;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    svcItems.forEach(item => {
+      const show = filter === 'all' || item.dataset.tags.split(' ').includes(filter);
+      item.classList.toggle('hide', !show);
+    });
+  };
+  svcTabs.forEach(tab => tab.addEventListener('click', () => applyFilter(tab.dataset.filter)));
+  // arrow-key navigation across the tab row
+  const tabsWrap = svcTabs[0].closest('.svc-tabs');
+  tabsWrap.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const idx = [...svcTabs].indexOf(document.activeElement);
+    if (idx === -1) return;
+    e.preventDefault();
+    const next = (idx + (e.key === 'ArrowRight' ? 1 : -1) + svcTabs.length) % svcTabs.length;
+    svcTabs[next].focus();
+    applyFilter(svcTabs[next].dataset.filter);
+  });
+  // click a row to select it (single-select)
+  svcItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const wasSelected = item.classList.contains('selected');
+      svcItems.forEach(i => i.classList.remove('selected'));
+      if (!wasSelected) item.classList.add('selected');
+    });
+  });
+}
+
 // ---- animated counters ----
 function animateCount(el) {
   const target = +el.dataset.count;
@@ -123,7 +160,7 @@ if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers
     ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)';
     requestAnimationFrame(loop);
   })();
-  const interactive = 'a, button, .tilt, .svc-cell, .proc-cell, .quote';
+  const interactive = 'a, button, .tilt, .svc-item, .proc-cell, .quote';
   document.addEventListener('mouseover', e => {
     if (e.target.closest(interactive)) ring.classList.add('hot');
   });

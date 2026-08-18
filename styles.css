@@ -53,11 +53,6 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
-[data-theme="light"] .svc-cell:hover {
-  background: rgba(0, 0, 0, 0.03);
-  color: var(--text);
-}
-
 [data-theme="light"] .stat-cell {
   background: var(--bg-panel);
 }
@@ -398,7 +393,8 @@ header.scrolled .nav {
     display: flex;
   }
 
-  .nav .theme-toggle {
+  .nav .theme-toggle,
+  .nav .cta .btn {
     display: none;
   }
 
@@ -1042,93 +1038,233 @@ h1.title em {
   }
 }
 
-/* ---------- SERVICES ---------- */
+/* ---------- SERVICES (interactive stack filter) ---------- */
 .services {
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  padding: 120px 0 130px;
+  background: #242b20;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(620px 340px at 8% 0%, rgba(139, 123, 255, 0.14), transparent 65%),
+    radial-gradient(520px 300px at 92% 100%, rgba(79, 216, 224, 0.10), transparent 65%);
+  pointer-events: none;
+}
+
+.svc-head {
   position: relative;
 }
 
-.svc-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--line);
+.svc-head .label,
+.svc-head .index {
+  color: rgba(244, 244, 247, 0.55);
 }
 
-.svc-row:last-child {
-  border-bottom: none;
+.svc-head .label::before {
+  background: rgba(244, 244, 247, 0.3);
 }
 
-.svc-cell {
-  padding: 34px 40px;
+.svc-head h2 {
+  color: #f4f4f7;
+}
+
+.svc-head h2 em {
+  font-style: italic;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.svc-card {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff, #f7f7fb);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 30px 80px -30px rgba(0, 0, 0, 0.55),
+    0 60px 120px -50px rgba(0, 0, 0, 0.45);
+}
+
+.svc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(25, 25, 37, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.svc-tab {
+  font-family: 'JetBrains Mono';
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: #5b5b6e;
+  padding: 9px 17px;
+  border-radius: 100px;
+  border: 1px solid rgba(25, 25, 37, 0.13);
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(25, 25, 37, 0.05);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .3s, border-color .3s, background .3s, box-shadow .3s, transform .3s var(--ease);
+}
+
+.svc-tab .spark {
+  font-style: normal;
+  font-size: 9px;
+  color: var(--violet);
+  transition: color .3s;
+}
+
+.svc-tab:hover {
+  color: #191925;
+  border-color: rgba(119, 103, 242, 0.45);
+  box-shadow: 0 4px 14px -6px rgba(119, 103, 242, 0.35);
+  transform: translateY(-1px);
+}
+
+.svc-tab:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.svc-tab.active {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--violet), var(--cyan) 55%, var(--coral));
+  box-shadow: 0 10px 26px -10px rgba(119, 103, 242, 0.55);
+}
+
+.svc-tab.active .spark {
+  color: #fff;
+}
+
+.svc-list {
+  padding-bottom: 8px;
+}
+
+.svc-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  padding: 24px 32px 24px 30px;
   font-family: 'Bricolage Grotesque';
-  font-size: clamp(20px, 3vw, 30px);
+  font-size: clamp(20px, 2.7vw, 28px);
   font-weight: 500;
   letter-spacing: -0.02em;
-  transition: background .3s, color .3s, padding-left .4s var(--ease);
-  cursor: default;
+  text-align: left;
+  color: #191925;
+  background: transparent;
+  border-top: 1px solid rgba(25, 25, 37, 0.07);
   position: relative;
+  cursor: pointer;
+  max-height: 92px;
+  overflow: hidden;
+  transition: background .35s, padding .45s var(--ease), max-height .45s var(--ease), opacity .35s var(--ease), border-color .35s, color .3s;
 }
 
-.svc-cell:first-child {
-  border-right: 1px solid var(--line);
+.svc-item:first-child {
+  border-top: none;
 }
 
-.svc-cell::before {
+.svc-item::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: var(--grad);
+  width: 4px;
+  background: linear-gradient(180deg, var(--coral), var(--cyan), var(--violet));
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform .4s var(--ease);
+  transition: transform .5s var(--ease);
 }
 
-.svc-cell:hover {
-  background: rgba(255, 255, 255, 0.02);
-  color: #fff;
-  padding-left: 52px;
+.svc-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(119, 103, 242, 0.07), rgba(119, 103, 242, 0.02) 60%, transparent);
+  opacity: 0;
+  transition: opacity .35s;
+  pointer-events: none;
 }
 
-.svc-cell:hover::before {
+.svc-item:hover {
+  padding-left: 42px;
+}
+
+.svc-item:hover::before,
+.svc-item.selected::before {
   transform: scaleY(1);
 }
 
-.svc-cell .arrow {
+.svc-item:hover::after,
+.svc-item.selected::after {
+  opacity: 1;
+}
+
+.svc-item.selected {
+  background: rgba(119, 103, 242, 0.05);
+}
+
+.svc-item .arr {
   font-family: 'JetBrains Mono';
   font-size: 14px;
-  color: var(--text-dim);
+  color: #a4a2b4;
+  flex: none;
   transition: transform .35s var(--ease), color .3s;
 }
 
-.svc-cell:hover .arrow {
+.svc-item:hover .arr {
   transform: translate(4px, -4px);
   color: var(--cyan);
 }
 
-.svc-cell small {
-  display: block;
-  font-family: 'Inter';
-  font-weight: 400;
-  font-size: 12px;
-  color: var(--text-faint);
-  letter-spacing: 0;
-  margin-top: 4px;
+.svc-item.selected .arr {
+  color: var(--violet);
+}
+
+.svc-item.hide {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  border-top-color: transparent;
+  pointer-events: none;
 }
 
 @media (max-width:700px) {
-  .svc-row {
-    grid-template-columns: 1fr;
+  .services {
+    padding: 80px 0 90px;
   }
 
-  .svc-cell:first-child {
-    border-right: none;
-    border-bottom: 1px solid var(--line);
+  .svc-tabs {
+    padding: 15px 18px;
+    gap: 7px;
+  }
+
+  .svc-tab {
+    padding: 7px 13px;
+    font-size: 11px;
+  }
+
+  .svc-item {
+    padding: 19px 20px;
+  }
+
+  .svc-item.hide {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -2327,10 +2463,6 @@ footer {
 
   .bracket-svg {
     width: 170px;
-  }
-
-  .svc-cell {
-    padding: 26px 22px;
   }
 
   .statement,
