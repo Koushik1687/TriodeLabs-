@@ -7,11 +7,11 @@ function tick(){
 tick(); setInterval(tick, 30000);
 
 // ---- theme toggle ----
+// Light is the default; users can opt into dark via the toggle (saved in localStorage).
 const rootEl = document.documentElement;
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const savedTheme = localStorage.getItem('theme');
-const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
-const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (sysDark.matches ? 'dark' : 'light');
+const initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
 rootEl.dataset.theme = initialTheme;
 const setToggleAria = () => themeToggles.forEach(b =>
   b.setAttribute('aria-label', rootEl.dataset.theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'));
@@ -22,13 +22,6 @@ themeToggles.forEach(toggle => toggle.addEventListener('click', () => {
   localStorage.setItem('theme', next);
   setToggleAria();
 }));
-// follow the system scheme until the user picks a theme
-sysDark.addEventListener('change', e => {
-  if (!localStorage.getItem('theme')) {
-    rootEl.dataset.theme = e.matches ? 'dark' : 'light';
-    setToggleAria();
-  }
-});
 
 // ---- header on scroll ----
 const header = document.getElementById('header');

@@ -38,8 +38,15 @@
   --blue: #468ff0;
 }
 
-[data-theme="light"] header.scrolled {
-  background: rgba(250, 250, 253, 0.8);
+[data-theme="light"] header.scrolled .nav {
+  background: rgba(250, 250, 253, 0.85);
+  box-shadow: 0 14px 40px -14px rgba(30, 30, 60, 0.18);
+}
+
+[data-theme="light"] .menu-head,
+[data-theme="light"] .menu-links a,
+[data-theme="light"] .menu-foot {
+  border-color: var(--line-strong);
 }
 
 [data-theme="light"] .btn.ghost {
@@ -62,6 +69,14 @@
 
 [data-theme="light"] .glass-plate {
   border-color: rgba(20, 20, 40, 0.10);
+}
+
+[data-theme="light"] .menu-panel {
+  background:
+    linear-gradient(180deg, var(--bg-raised), var(--bg-panel)) padding-box,
+    linear-gradient(160deg, rgba(119, 103, 242, 0.65), rgba(18, 176, 189, 0.5) 55%, rgba(238, 92, 75, 0.55)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 30px 80px -24px rgba(30, 30, 60, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 0 44px -18px rgba(119, 103, 242, 0.45);
 }
 
 * {
@@ -169,31 +184,48 @@ h2 {
   }
 }
 
-/* ---------- NAV ---------- */
+/* ---------- NAV (floating pill on scroll) ---------- */
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background .35s, border-color .35s, backdrop-filter .35s;
-  border-bottom: 1px solid transparent;
+  padding: 0;
+  pointer-events: none;
+  transition: padding .45s var(--ease);
 }
 
 header.scrolled {
-  background: rgba(8, 8, 11, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
+  padding: 14px 24px 0;
 }
 
 .nav {
+  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  gap: 20px;
   max-width: var(--mw);
   margin: 0 auto;
+  padding: 20px 40px;
+  border-radius: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: blur(0px) saturate(1);
+  -webkit-backdrop-filter: blur(0px) saturate(1);
+  box-shadow: none;
+  transition: padding .45s var(--ease), border-radius .45s var(--ease), border-color .45s, background .45s, box-shadow .45s, backdrop-filter .45s;
+}
+
+header.scrolled .nav {
+  padding: 12px 20px;
+  border-radius: 100px;
+  border-color: var(--line-strong);
+  background: rgba(14, 14, 19, 0.85);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 14px 40px -14px rgba(0, 0, 0, 0.5);
 }
 
 .nav .mark {
@@ -445,12 +477,12 @@ header.scrolled {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 54px;
-    right: 14px;
+    top: 86px;
+    right: 24px;
     z-index: 200;
     width: min(290px, 78vw);
-    max-height: calc(100vh - 108px);
-    max-height: calc(100dvh - 108px);
+    max-height: calc(100vh - 104px);
+    max-height: calc(100dvh - 104px);
     background:
       linear-gradient(180deg, var(--bg-raised), var(--bg-panel)) padding-box,
       linear-gradient(160deg, var(--violet), var(--cyan) 55%, var(--coral)) border-box;
