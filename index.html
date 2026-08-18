@@ -28,6 +28,10 @@
     <div class="cta">
       <span class="meta"><span>Kolkata, IN</span><span class="clock" id="clock">--:--</span></span>
       <a class="btn ghost" href="#contact">Start a project</a>
+      <button class="theme-toggle" aria-label="Toggle light theme">
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"/></svg>
+      </button>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -37,7 +41,13 @@
 <aside class="menu-panel" id="menuPanel" aria-hidden="true">
   <div class="menu-head">
     <span class="mark"><span class="dot"></span>Triode<small>LABS</small></span>
-    <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    <div class="menu-head-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light theme">
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 1 1 9.7 3.5a7 7 0 0 0 10.8 10.8z"/></svg>
+      </button>
+      <button class="menu-close" id="menuClose" aria-label="Close menu">✕</button>
+    </div>
   </div>
   <nav class="menu-links">
     <a href="#work"><span>Work</span><span class="arw">→</span></a>
@@ -48,7 +58,6 @@
   </nav>
   <div class="menu-foot">
     <a class="btn" href="#contact">Start a project →</a>
-    <span class="mail">hello@triostudio.dev</span>
   </div>
 </aside>
 

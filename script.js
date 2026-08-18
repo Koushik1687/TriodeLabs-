@@ -6,6 +6,30 @@ function tick(){
 }
 tick(); setInterval(tick, 30000);
 
+// ---- theme toggle ----
+const rootEl = document.documentElement;
+const themeToggles = document.querySelectorAll('.theme-toggle');
+const savedTheme = localStorage.getItem('theme');
+const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+const initialTheme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : (sysDark.matches ? 'dark' : 'light');
+rootEl.dataset.theme = initialTheme;
+const setToggleAria = () => themeToggles.forEach(b =>
+  b.setAttribute('aria-label', rootEl.dataset.theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'));
+setToggleAria();
+themeToggles.forEach(toggle => toggle.addEventListener('click', () => {
+  const next = rootEl.dataset.theme === 'light' ? 'dark' : 'light';
+  rootEl.dataset.theme = next;
+  localStorage.setItem('theme', next);
+  setToggleAria();
+}));
+// follow the system scheme until the user picks a theme
+sysDark.addEventListener('change', e => {
+  if (!localStorage.getItem('theme')) {
+    rootEl.dataset.theme = e.matches ? 'dark' : 'light';
+    setToggleAria();
+  }
+});
+
 // ---- header on scroll ----
 const header = document.getElementById('header');
 addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
